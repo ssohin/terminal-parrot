@@ -13,9 +13,11 @@ func reverse(lines []string) []string {
 	return newLines
 }
 
-func draw(orientation string) {
+func draw(orientation string, message string) {
 	termbox.Clear(termbox.ColorDefault, termbox.ColorDefault)
 	lines := strings.Split(frames[frame_index], "\n")
+	lines = append(lines, "\n")
+	lines = append(lines, message)
 
 	if orientation == "aussie" {
 		lines = reverse(lines)

@@ -13,6 +13,7 @@ import (
 
 func main() {
 	loops := flag.Int("loops", 0, "number of times to loop (default: infinite)")
+	message := flag.String("message", " ", "message to display (default: ' ' (space))")
 	delay := flag.Int("delay", 75, "frame delay in ms")
 	orientation := flag.String("orientation", "regular", "regular or aussie")
 	flag.Parse()
@@ -38,7 +39,7 @@ func main() {
 	termbox.SetOutputMode(termbox.Output256)
 
 	loop_index := 0
-	draw(*orientation)
+	draw(*orientation, *message)
 
 loop:
 	for {
@@ -52,7 +53,7 @@ loop:
 			if *loops > 0 && (loop_index/9) >= *loops {
 				break loop
 			}
-			draw(*orientation)
+			draw(*orientation, *message)
 			time.Sleep(time.Duration(*delay) * time.Millisecond)
 		}
 	}
